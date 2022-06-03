@@ -47,8 +47,8 @@ CREATE table pass_in_trip(
 ### Create relations
 */
 
--- # ? No cluster in 1st one?
--- # ? Why PK2
+-- # Q No cluster in 1st one?
+-- # Q Why PK2
 
 -- PK
 ALTER TABLE company ADD CONSTRAINT PK2 PRIMARY KEY CLUSTERED (ID_comp);   
@@ -63,6 +63,7 @@ ALTER TABLE pass_in_trip ADD CONSTRAINT FK_pass_in_trip_passenger FOREIGN KEY (I
 
 
 /*markdown
+
 ### Fill tables with data
 */
 
@@ -161,3 +162,9 @@ insert into pass_in_trip values(8882, '2005-11-13 00:00:00',14,'3d       ');
 insert into pass_in_trip values(7771, '2005-11-14 00:00:00',14,'4d       ');
 insert into pass_in_trip values(7771, '2005-11-16 00:00:00',14,'5d       ');
 insert into pass_in_trip values(7772, '2005-11-29 00:00:00',14,'1c       ');
+
+/*markdown
+## Check if tables are created
+*/
+
+SHOW TABLES;

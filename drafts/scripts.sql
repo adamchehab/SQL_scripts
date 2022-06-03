@@ -29,11 +29,18 @@ ALTER TABLE trip_1 ADD CONSTRAINT FK_trip_company_1 FOREIGN KEY (id_comp_1) REFE
 ALTER TABLE trip_1 RENAME COLUMN id_comp_1 TO id_comp;
 
 /*markdown
-### Каскадное удаление (демонстрация)
+### Каскадное удаление (демонстрация) + транзакции
 */
 
+-- отключаем автокоммит в бд
+set autocommit=0;
+Start transaction;
+
+-- Каскадное удаление (Пример)
 SELECt * FROM company_1;
 DELETE FROM company_1 WHERE id_comp = 4;
 SELECt * FROM company_1;
-
 SELECT * FROM trip_1;
+
+-- откатываем изменения
+rollback;
