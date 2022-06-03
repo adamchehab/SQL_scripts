@@ -1,5 +1,5 @@
 /*markdown
-# Скрипты
+# Скрипты - работа с таблицами
 */
 
 /*markdown
@@ -42,3 +42,17 @@ SELECT * FROM trip_1;
 
 -- откатываем изменения
 rollback;
+
+/*markdown
+### Соединить колонки разные из 1 таблицы
+*/
+
+SELECT DISTINCT
+    COUNT(c.id_comp) AS "Company 1",
+    COUNT(cc.id_comp) AS "Company 2"
+FROM
+    company AS c,
+    company AS cc
+WHERE
+    c.id_comp = 1 AND
+    cc.id_comp = 3;
