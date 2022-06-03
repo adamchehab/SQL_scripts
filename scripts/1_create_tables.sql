@@ -60,7 +60,6 @@ ALTER TABLE pass_in_trip ADD CONSTRAINT FK_pass_in_trip_passenger FOREIGN KEY (I
 
 /*markdown
 ### Fill tables with data
-
 */
 
 insert into company values(1, 'Don_avia  ');
