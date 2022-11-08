@@ -11,7 +11,7 @@ ALTER TABLE trip_1 ADD id_comp_1 INT NOT NULL;
 -- Копируем старую колонку в новую
 UPDATE trip_1 SET id_comp_1=id_comp;
 
--- Говорим что в стврой  колонке может быть NULL
+-- Говорим что в старой  колонке может быть NULL
 ALTER TABLE trip_1 MODIFY id_comp INT;
 -- Зануляем старую колонку
 UPDATE trip_1 SET id_comp=NULL;
@@ -19,7 +19,7 @@ UPDATE trip_1 SET id_comp=NULL;
 -- Дропаем старый ключ
 ALTER TABLE trip_1 DROP CONSTRAINT FK_trip_company_1;
 -- Дропаем старую колонку
-ALTER TABLE trip_1 DROP id_comp; 
+ALTER TABLE trip_1 DROP id_comp;
 
 -- Добавляем ключ к новой колонке
 ALTER TABLE trip_1 ADD CONSTRAINT FK_trip_company_1 FOREIGN KEY (id_comp_1) REFERENCES company_1(id_comp) ON DELETE CASCADE;
@@ -35,9 +35,9 @@ set autocommit=0;
 Start transaction;
 
 -- Каскадное удаление (Пример)
-SELECt * FROM company_1;
+SELECT * FROM company_1;
 DELETE FROM company_1 WHERE id_comp = 4;
-SELECt * FROM company_1;
+SELECT * FROM company_1;
 SELECT * FROM trip_1;
 
 -- откатываем изменения
@@ -56,3 +56,8 @@ FROM
 WHERE
     c.id_comp = 1 AND
     cc.id_comp = 3;
+
+SHOW TABLES;
+
+DESC trip;
+

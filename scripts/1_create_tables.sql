@@ -7,7 +7,7 @@
 */
 
 DROP DATABASE IF EXISTS airlines;
-CREATE DATABASE IF NOT EXISTS airlines;
+CREATE DATABASE airlines;
 USE airlines;
 
 /*markdown
@@ -51,7 +51,7 @@ CREATE table pass_in_trip(
 ALTER TABLE company ADD CONSTRAINT PK2 PRIMARY KEY CLUSTERED (ID_comp);   
 ALTER TABLE trip ADD CONSTRAINT PK_t PRIMARY KEY  CLUSTERED (trip_no);   
 ALTER TABLE passenger ADD CONSTRAINT PK_psg PRIMARY KEY CLUSTERED (ID_psg);   
-ALTER TABLE pass_in_trip ADD CONSTRAINT PK_pt PRIMARY KEY  CLUSTERED (trip_no, date, ID_psg);   
+ALTER TABLE pass_in_trip ADD CONSTRAINT PK_pt PRIMARY KEY  CLUSTERED (trip_no, date, ID_psg); 
 
 -- FK
 ALTER TABLE trip ADD CONSTRAINT FK_trip_company FOREIGN KEY (ID_comp) REFERENCES company(ID_comp) ON DELETE CASCADE;
