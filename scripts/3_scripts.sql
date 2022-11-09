@@ -61,3 +61,7 @@ SHOW TABLES;
 
 DESC trip;
 
+
+
+DESC trip;
+
