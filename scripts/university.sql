@@ -124,3 +124,100 @@ WHERE
         WHERE
             students.name LIKE 'Вова %'
     );
+
+-- @DELIMITER $$
+
+DROP PROCEDURE IF EXISTS pr_test$$
+
+CREATE PROCEDURE pr_test()
+BEGIN
+    SELECT * FROM students;
+END$$
+-- @DELIMITER ;
+
+CALL pr_test();
+
+/*markdown
+### созаем таблицу
+*/
+
+DROP TABLE IF EXISTS numbers;
+
+CREATE TABLE numbers(
+    number_id INT NOT NULL AUTO_INCREMENT,
+    number VARCHAR(10) NOT NULL,
+    PRIMARY KEY (number_id)
+);
+
+/*markdown
+### создаем процедуру
+*/
+
+DROP TABLE IF EXISTS numbers;
+
+CREATE TABLE numbers(
+    number_id INT NOT NULL AUTO_INCREMENT,
+    number VARCHAR(10) NOT NULL,
+    PRIMARY KEY (number_id)
+);
+
+DROP PROCEDURE IF EXISTS pr_while;
+
+-- @DELIMITER //  
+CREATE PROCEDURE pr_while()   
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE j INT DEFAULT 1;
+    DECLARE st VARCHAR(10);
+    WHILE (i <= 8) DO
+        WHILE (j <= 6) DO
+            SET st = 'К3-';
+            SET st = CONCAT(st, i, j, 'Б');
+            INSERT INTO numbers(number) VALUES (st);
+        SET j = j+1;
+        END WHILE;
+        SET j = 1;
+    SET i = i+1;
+    END WHILE;
+END;
+-- @//  
+
+CALL pr_while(); 
+select * from numbers limit 10;
+select * from numbers order by number_id DESC limit 10;
+
+
+
+CREATE TABLE enrolle(
+    enrolle_id INT NOT NULL AUTO_INCREMENT,
+    name_enrolle VARCHAR(10) NOT NULL,
+    PRIMARY KEY (number_id)
+);
+
+DROP TABLE IF EXISTS enrolle, program, program_enrolle;
+
+CREATE TABLE enrolle(
+    enrolle_id INT NOT NULL AUTO_INCREMENT,
+    name_enrolle VARCHAR(30) NOT NULL,
+    PRIMARY KEY (enrolle_id)
+);
+
+CREATE TABLE program(
+    program_id INT NOT NULL AUTO_INCREMENT,
+    name_program VARCHAR(30) NOT NULL,
+    PRIMARY KEY (program_id)
+);
+
+CREATE TABLE program_enrolle(
+    program_enrolle_id INT NOT NULL AUTO_INCREMENT,
+    program_id INT NOT NULL,
+    enrolle_id INT NOT NULL,
+    PRIMARY KEY (program_enrolle_id),
+    CONSTRAINT pr_id FOREIGN KEY (program_id) REFERENCES program (program_id) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT en_id FOREIGN KEY (enrolle_id) REFERENCES enrolle (enrolle_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+DESC enrolle;
+DESC program;
+DESC program_enrolle;
+
