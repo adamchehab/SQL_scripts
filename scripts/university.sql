@@ -188,6 +188,7 @@ select * from numbers order by number_id DESC limit 10;
 
 
 
+
 CREATE TABLE enrolle(
     enrolle_id INT NOT NULL AUTO_INCREMENT,
     name_enrolle VARCHAR(10) NOT NULL,
